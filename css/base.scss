@@ -1,0 +1,9 @@
+/* Configuration */
+$fonts:         "Open Sans", sans-serif;
+
+/* Reset default font */
+* {
+    font-family: $fonts;
+    font-weight: 400;
+    font-size:   1em;
+}
