@@ -11,3 +11,15 @@ app.config(function($routeProvider, $locationProvider) {
             controller  : 'ProjectsController'
         });
 });
+
+// events
+$(function() {
+    $(document).click(function() {
+        $(".wrapper-dropdown").removeClass("active");
+    });
+
+    $(".wrapper-dropdown").on("click", function() {
+        $(this).toggleClass("active");
+        return false;
+    });
+});

@@ -1,18 +1,28 @@
 /* Reset default font */
 * {
-    font-family: $fonts;
+    font-family: $fonts-base;
     font-weight: 400;
     font-size:   1em;
 }
 
 html, body {
     background-color: $color-background;
-    width: 100%;
-    min-height: 100%;
+    color: $color-text;
+    //height: 100%;
 }
 
-.main {
-    width: 1280px;
-    min-height: 100%;
-    margin: 32px auto;
+#view {
+    margin-top: 96px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.container {
+    padding: 0px 48px;
 }
