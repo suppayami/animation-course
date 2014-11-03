@@ -1,0 +1,231 @@
+.ui-block {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    background-color: $color-base;
+
+    border: solid 1px $color-border;
+    @include border-radius(8px);
+
+    .container {
+        padding: 16px;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .sub-block {
+            padding-bottom: 24px;
+            border-bottom: solid 1px $color-border-sub;
+        }
+
+        .sub-block:last-of-type {
+            padding-bottom: 0px;
+            border-bottom: none;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: $color-text-header;
+            letter-spacing: 1px;
+            font-family: $fonts-ui;
+            padding: 0;
+            margin-top: 16px;
+            margin-bottom: 0;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        dl dt {
+            font-size: 1.0em;
+            color: $color-text-sub-header;
+            font-family: $fonts-ui;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        dl dd {
+            font-size: 0.9em;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+    }
+}
+
+.project-block {
+    @include box-sizing(border-box);
+    position: relative;
+    margin-bottom: 16px;
+
+    .main {
+        @include box-sizing(border-box);
+        position: relative;
+        top: 0;
+        left: 0;
+
+        height: 32px;
+        background: $color-base;
+        border: solid 1px $color-border;
+        @include border-radius(16px);
+
+        z-index: 3;
+
+        .header {
+            position: relative;
+            height: 32px;
+            line-height: 32px;
+            padding: 0px 16px;
+            background-image: url("img/project-noise.png");
+
+            @include rotate(0deg);
+            @include border-radius(16px);
+
+            i {
+                position: absolute;
+                top: 0;
+                right: 16px;
+                line-height: 32px;
+                font-size: 1.5em;
+            }
+        }
+
+        .description {
+            height: 0;
+            opacity: 0;
+
+            padding: 0px 16px;
+
+            p {
+                padding: 0;
+                margin: 0;
+            }
+
+            dl dt {
+                font-size: 1.0em;
+                color: $color-text-sub-header;
+                font-family: $fonts-ui;
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
+
+            dl dd {
+                font-size: 0.9em;
+                margin-top: 2px;
+                margin-bottom: 2px;
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+        }
+    }
+
+    .members {
+        @include box-sizing(border-box);
+        position: relative;
+        top: 44px;
+
+        width: 0;
+        padding: 0 16px;
+        background: $color-sub-base;
+        border: solid 1px $color-sub-border;
+        border-radius: 0px 8px 8px 0px;
+
+        z-index: 1;
+        opacity: 0;
+
+        dl dt {
+            font-size: 1.0em;
+            color: $color-text-sub-header;
+            font-family: $fonts-ui;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        dl dd {
+            font-size: 0.9em;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    }
+
+    .task {
+        @include box-sizing(border-box);
+        position: relative;
+        top: 0;
+        background: $color-sub-base;
+        border: solid 1px $color-sub-border;
+
+        height: 0;
+        padding: 0 16px;
+        border-radius: 0px 0px 8px 8px;
+
+        z-index: 1;
+        opacity: 0;
+
+        dl dt {
+            font-size: 1.0em;
+            color: $color-text-sub-header;
+            font-family: $fonts-ui;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        dl dd {
+            font-size: 0.9em;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    }
+
+    &.active {
+        .main {
+            height: auto;
+            @include border-radius(8px);
+
+            .header {
+                border-bottom: solid 1px $color-border-sub;
+                border-radius: 8px 8px 0px 0px;
+
+                i {
+                    @include rotate(180deg);
+                }
+            }
+
+            .description {
+                height: auto;
+                opacity: 1;
+            }
+        }
+
+        .members {
+            opacity: 1;
+            width: auto;
+        }
+
+        .task {
+            opacity: 1;
+            height: auto;
+        }
+    }
+}
