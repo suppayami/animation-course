@@ -35,3 +35,15 @@
     -moz-transform: rotate($deg);
     transform: rotate($deg);
 }
+
+@mixin animation-delay($delay) {
+    -webkit-animation-delay: $delay;
+    -moz-animation-delay: $delay;
+    animation-delay: $delay;
+}
+
+@mixin transition-delay($delay) {
+    -webkit-transition-delay: $delay;
+    -moz-transition-delay: $delay;
+    transition-delay: $delay;
+}
