@@ -1,7 +1,7 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ngAnimate']);
 
-app.controller("ProjectsController", function($scope, $timeout, $document) {
-    $scope.fullyLoad = false;
+app.controller("ProjectsController", function($scope, $timeout, $document, $location) {
+    $scope.isChange = false;
     $document.ready(function() {
         $(".projects-block").css("width", $(window).width() - 324 - 48 - 48);
 
@@ -50,49 +50,49 @@ app.controller("ProjectsController", function($scope, $timeout, $document) {
                 selector.find(".task").animate({
                     maxHeight: "0",
                     opacity: 0
-                }, 500);
+                }, 300);
 
                 setTimeout(function() {
                     selector.find(".members").animate({
                         maxWidth: "0",
                         opacity: 0
-                    }, 500);
-                }, 150);
+                    }, 300);
+                }, 50);
 
                 setTimeout(function() {
                     selector.find(".row-1").animate({
                         maxHeight: "32px"
-                    }, 500);
+                    }, 300);
                     selector.find(".description").animate({
                         maxHeight: "0"
-                    }, 500);
+                    }, 300);
 
                     selector.toggleClass("active");
-                }, 750);
+                }, 375);
             } else {
                 selector.toggleClass("active");
                 setTimeout(function() {
                     selector.find(".row-1").animate({
                         maxHeight: height + "px"
-                    }, 500);
+                    }, 300);
                     selector.find(".description").animate({
                         maxHeight: height + "px"
-                    }, 500);
-                }, 150);
+                    }, 300);
+                }, 50);
 
                 setTimeout(function() {
                     selector.find(".members").animate({
                         maxWidth: members + "px",
                         opacity: 1
-                    }, 500);
-                }, 850);
+                    }, 300);
+                }, 500);
 
                 setTimeout(function() {
                     selector.find(".task").animate({
                         maxHeight: task + "px",
                         opacity: 1
-                    }, 500);
-                }, 700);
+                    }, 300);
+                }, 400);
             }
         };
 
@@ -104,7 +104,42 @@ app.controller("ProjectsController", function($scope, $timeout, $document) {
         $(".project-block .main .header").click(function() {
             fuckProject($(this).parent().parent().parent().parent());
         });
+
+        $scope.$on("$locationChangeStart", function (event, newUrl, oldUrl) {
+            var baseLen = $location.absUrl().length - $location.url().length;
+            $(".project-block").each(function() {
+                if ($(this).hasClass("active")) {
+                    fuckProject($(this));
+                }
+            });
+
+            setTimeout(function() {
+                $(".project-block").each(function() {
+                    $(this).addClass("fadeOutRight");
+                });
+            }, 675);
+
+            setTimeout(function() {
+                $("#profile").addClass("fadeOutLeft");
+            }, 675);
+
+            $timeout(function() {
+                $scope.isChange = true;
+                $location.path(newUrl.substring(baseLen));
+                return;
+            }, 1800);
+
+            if ($scope.isChange == false)
+                event.preventDefault();
+        });
     });
+});
+
+app.controller("CreateController", function($scope, $document, $location) {
+    $scope.phasesNumber = 1;
+    $scope.getNumber = function(num) {
+        return new Array(num);
+    }
 });
 
 app.config(function($routeProvider, $locationProvider) {
@@ -112,6 +147,10 @@ app.config(function($routeProvider, $locationProvider) {
         .when('/', {
             templateUrl : '/template/projects.html',
             controller  : 'ProjectsController'
+        })
+        .when('/create', {
+            templateUrl : '/template/new_project.html',
+            controller  : 'CreateController'
         });
 });
 
