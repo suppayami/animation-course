@@ -32,7 +32,7 @@
             letter-spacing: 1px;
             font-family: $fonts-ui;
             padding: 0;
-            margin-top: 16px;
+            margin-top: 8px;
             margin-bottom: 0;
         }
 
@@ -281,7 +281,7 @@
             }
 
             &::-webkit-scrollbar-thumb {
-                background-color: $color-button;
+                background-color: $color-button-alt;
                 // border-radius: 0px 0px 8px 0px;
             }
         }

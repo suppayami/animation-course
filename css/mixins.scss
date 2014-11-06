@@ -5,11 +5,11 @@
     border-radius: $radius;
 }
 
-@mixin transition($time, $ease) {
-    -webkit-transition: all $time $ease;
-    -moz-transition: all $time $ease;
-    -o-transition: all $time $ease;
-    transition: all $time $ease;
+@mixin transition($time, $ease, $properties: all) {
+    -webkit-transition: $properties $time $ease;
+    -moz-transition: $properties $time $ease;
+    -o-transition: $properties $time $ease;
+    transition: $properties $time $ease;
 }
 
 @mixin box-shadow($top, $left, $blur, $color, $inset: false) {

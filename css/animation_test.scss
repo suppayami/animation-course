@@ -51,3 +51,24 @@
 #create-4 {
     display: none;
 }
+
+@-webkit-keyframes demo {
+    0% {
+        background-color: $color-button;
+        opacity: 1;
+    }
+    22% {
+        background-color: $color-button-active;
+    }
+    77% {
+        background-color: $color-button;
+    }
+    100% {
+        background-color: $color-button-active;
+    }
+}
+
+.demo {
+    -webkit-animation-name: demo;
+    -webkit-animation-iteration-count: 1;
+}
