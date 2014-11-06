@@ -135,11 +135,89 @@ app.controller("ProjectsController", function($scope, $timeout, $document, $loca
     });
 });
 
-app.controller("CreateController", function($scope, $document, $location) {
+app.controller("CreateController", function($scope, $timeout, $document, $location) {
     $scope.phasesNumber = 1;
     $scope.getNumber = function(num) {
-        return new Array(num);
+        if (!num) { num = 1; }
+        return new Array(parseInt(num));
     }
+    $scope.members = [];
+    $scope.accounts = [
+        {name: 'nguyen tuan cuong', email: 'cuongnguyen@yami.moe', pic: 'profile_picture.jpg'},
+        {name: 'pham hong an', email: 't3phho00@students.oamk.fi', pic: 'an_pham.png'},
+        {name: 'hoang long', email: 't3holo00@students.oamk.fi', pic: 'hoang_long.jpg'},
+        {name: 'cocomi naruse', email: 'random@gmail.com', pic: 'mypictr_300x300.jpg'},
+        {name: 'risa tachibana', email: 'random_too@gmail.com', pic: 'risa.jpg'},
+        {name: 'kanade tachibana', email: 'random_triple@gmail.com', pic: 'kanade.jpg'},
+        {name: 'pikachu', email: 'pikachu@gmail.com', pic: 'pikachu.png'}
+    ];
+    $scope.addMember = function(index) {
+        if ($scope.accounts[index]) {
+            $scope.members.unshift($scope.accounts[index]);
+            $scope.accounts.splice(index, 1);
+        }
+    };
+
+    $("#create-1 .next").click(function() {
+        $("#create-1").removeClass("fadeInLeft");
+        $("#create-1").removeClass("fadeInRight");
+        $("#create-1").addClass("fadeOutLeft");
+        $timeout(function() {
+            $("#create-2").removeClass("fadeInRight");
+            $("#create-2").removeClass("fadeOutRight");
+            $("#create-2").css("display", "block");
+            $("#create-2").addClass("fadeInRight");
+            $("#create-1").css("display", "none");
+        }, 750);
+    });
+
+    $("#create-2 .next").click(function() {
+        $("#create-2").removeClass("fadeInLeft");
+        $("#create-2").removeClass("fadeInRight");
+        $("#create-2").addClass("fadeOutLeft");
+        $timeout(function() {
+            $("#create-3").removeClass("fadeInRight");
+            $("#create-3").removeClass("fadeOutRight");
+            $("#create-3").css("display", "block");
+            $("#create-3").addClass("fadeInRight");
+            $("#create-2").css("display", "none");
+        }, 750);
+    });
+
+    $("#create-2 .back").click(function() {
+        $("#create-2").removeClass("fadeInRight");
+        $("#create-2").addClass("fadeOutRight");
+        $timeout(function() {
+            $("#create-2").css("display", "none");
+            $("#create-1").css("display", "block");
+            $("#create-1").removeClass("fadeOutLeft");
+            $("#create-1").addClass("fadeInLeft");
+        }, 750);
+    });
+
+    $("#create-3 .done").click(function() {
+        $("#create-3").removeClass("fadeInLeft");
+        $("#create-3").removeClass("fadeInRight");
+        $("#create-3").addClass("fadeOutLeft");
+        $timeout(function() {
+            $("#create-4").removeClass("fadeInRight");
+            $("#create-4").removeClass("fadeOutRight");
+            $("#create-4").css("display", "block");
+            $("#create-4").addClass("fadeInRight");
+            $("#create-3").css("display", "none");
+        }, 750);
+    });
+
+    $("#create-3 .back").click(function() {
+        $("#create-3").removeClass("fadeInRight");
+        $("#create-3").addClass("fadeOutRight");
+        $timeout(function() {
+            $("#create-3").css("display", "none");
+            $("#create-2").css("display", "block");
+            $("#create-2").removeClass("fadeOutLeft");
+            $("#create-2").addClass("fadeInLeft");
+        }, 750);
+    });
 });
 
 app.config(function($routeProvider, $locationProvider) {
